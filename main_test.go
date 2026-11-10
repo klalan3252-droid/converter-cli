@@ -5,6 +5,7 @@ import (
 	"errors"
 	"os"
 	"path/filepath"
+	"strconv"
 	"strings"
 	"testing"
 )
@@ -53,26 +54,10 @@ func TestWordCounts(t *testing.T) {
 		p := writeTemp(t, "f.txt", content)
 		out, _, code := runArgs(t, "", p)
 		w := want
-		if code != 0 || out != itoa(w)+" "+p+"\n" {
+		if code != 0 || out != strconv.Itoa(w)+" "+p+"\n" {
 			t.Errorf("content %.20q: got %q code %d, want count %d", content, out, code, w)
 		}
 	}
-}
-
-func itoa(n int) string {
-	return strings.TrimSpace(strings.Join([]string{string(rune('0' + n%10))}, ""))[:0] + fmtInt(n)
-}
-
-func fmtInt(n int) string {
-	if n == 0 {
-		return "0"
-	}
-	s := ""
-	for n > 0 {
-		s = string(rune('0'+n%10)) + s
-		n /= 10
-	}
-	return s
 }
 
 func TestMultipleFilesTotal(t *testing.T) {
