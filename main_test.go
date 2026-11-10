@@ -46,8 +46,8 @@ func TestWordCounts(t *testing.T) {
 		"  lead and trail  \n":    3,
 		"one":                     1,
 		"héllo wörld 日本 語":        4,
-		"a b":                2,
-		"a　b　c":         3,
+		"a\u00a0b":                2,
+		"a\u3000b\u3000c":         3,
 		strings.Repeat("x", 1<<20): 1,
 	}
 	for content, want := range cases {
