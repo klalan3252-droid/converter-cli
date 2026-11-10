@@ -40,14 +40,14 @@ func TestSingleFile(t *testing.T) {
 
 func TestWordCounts(t *testing.T) {
 	cases := map[string]int{
-		"":                        0,
-		"   \n\t \n":              0,
-		"a  b\t\tc\n\n\nd":        4,
-		"  lead and trail  \n":    3,
-		"one":                     1,
-		"héllo wörld 日本 語":        4,
-		"a\u00a0b":                2,
-		"a\u3000b\u3000c":         3,
+		"":                         0,
+		"   \n\t \n":               0,
+		"a  b\t\tc\n\n\nd":         4,
+		"  lead and trail  \n":     3,
+		"one":                      1,
+		"héllo wörld 日本 語":         4,
+		"a\u00a0b":                 2,
+		"a\u3000b\u3000c":          3,
 		strings.Repeat("x", 1<<20): 1,
 	}
 	for content, want := range cases {
